@@ -1,4 +1,4 @@
-<html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content=""/><meta name="keyword"/><title>采用Git实现代码管理
+<html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content=""/><meta name="keyword"/><title>采用Git实现代码管理（一）
 -
 Sheep Sparks
 </title><link rel="icon" href="img/favicon.ico"/>
@@ -18,22 +18,40 @@ Sheep Sparks
 <a class="menubar-link" href="/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Hexo框架学习</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><i class="icon icon-archive"></i>
 <a class="menubar-link" href="/archives">博文归档</a></li><li class="menubar-item"><i class="icon icon-tags"></i>
 <a class="menubar-link" href="/tags">标签</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><a class="menubar-link" href="/about"><span>关于</span></a></li></ul><div class="menu-search-box search-button"><div>搜索</div>
-<i class="icon icon-search"></i></div></div></div><div class="main" data-page="post"><article class="post" id="post"><header class="post-head"><h1 class="post-title"><a class="title" href="/2025/02/10/%E9%87%87%E7%94%A8Git%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86/">采用Git实现代码管理</a></h1></header><div class="post-meta"><div class="post-date"><time class="post-time" itemprop="datePublished" title="2025-02-10 15:12:57" datetime="2025-02-10T07:12:57.000Z">2025-02-10</time></div>|
+<i class="icon icon-search"></i></div></div></div><div class="main" data-page="post"><article class="post" id="post"><header class="post-head"><h1 class="post-title"><a class="title" href="/2025/02/10/%E9%87%87%E7%94%A8Git%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86/">采用Git实现代码管理（一）</a></h1></header><div class="post-meta"><div class="post-date"><time class="post-time" itemprop="datePublished" title="2025-02-10 15:12:57" datetime="2025-02-10T07:12:57.000Z">2025-02-10</time></div>|
 <div class="post-tag"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li></ul></div>
-<div class="post-visit"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span>访问</span></div></div><div class="post-info"><div class="post-word-count">本文共189字。</div>
+<div class="post-visit"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span>访问</span></div></div><div class="post-info"><div class="post-word-count">本文共649字。</div>
 </div><div class="article-entry" itemprop="articleBody"><p>Git是一个开源免费的分布式版本管理系统，基于git可以实现代码的版本管理。<br>
 本博客学习自视频<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Hkr7YYEh8/?spm_id_from=333.788.top_right_bar_window_default_collection.content.click&amp;vd_source=9d15940a94db05ffc59f540f81990fe6">给傻子的Git教程</a>（谢谢UP主，我就喜欢傻子教程）。</p>
 <span id="more"></span>
-<h1 id="Git的安装及配置">Git的安装及配置</h1>
-<p>Git的下载地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a>。验证Git是否安装成功：</p>
+<h1 id="1-Git的安装及配置">1. Git的安装及配置</h1>
+<p>Git的下载地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a>。可通过以下两种方法验证Git是否安装成功：</p>
 <ul>
 <li>检查VSCode的“源代码管理”模块是否继承了Git</li>
 <li>在cmd中运行<code>git --version</code>，应返回当前的Git版本号。</li>
 </ul>
-<p>Git的配置：使用Git的第一步就是设置用户名和邮箱，这些信息会在每个Git提交中都会用到：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;John Doe&quot; # 用户名</span><br><span class="line">git config --global user.email johndoe@example.com # 邮箱</span><br></pre></td></tr></table></figure>
+<p>使用Git的第一步就是设置用户名和邮箱，这些信息会在每个Git提交中都会用到：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">git config --global user.name &quot;John Doe&quot; # 用户名<br>git config --global user.email johndoe@example.com # 邮箱<br></code></pre></td></tr></table></figure>
 <p>邮箱应是Github账号对应的邮箱。</p>
-</div></article><aside class="post-widget"><h4>目录</h4><nav class="post-toc-wrap" id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Git%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="post-toc-text">Git的安装及配置</span></a></li></ol></nav></aside></div><footer class="footer-nav"><div class="footer"><div class="back-top" id="back-top" title="Back to top"><i class="icon icon-chevron-bar-up"></i></div><div class="footer-content"><div><span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv">?</span>
+<h1 id="2-Git的使用">2. Git的使用</h1>
+<h2 id="2-1-初始化仓库（Initialize-Repository）">2.1 初始化仓库（Initialize Repository）</h2>
+<p>若当前文件夹没有建立代码仓库（没有被Git管理），可通过两种方法建立仓库：</p>
+<ul>
+<li>VSCode -&gt;  “源代码管理” -&gt; “初始化仓库”</li>
+<li>在当前文件夹内打开Git Bash -&gt; <code>git init</code><br>
+此时，在原文件夹下会创建一个名为.git的新文件夹，标志当前代码已处于Git的版本控制下。</li>
+</ul>
+<h2 id="2-2-提交">2.2 提交</h2>
+<h3 id="2-2-1-先上传本地文件后创建云端仓库">2.2.1 先上传本地文件后创建云端仓库</h3>
+<ol>
+<li>在创建仓库后，点击VSCode -&gt; 填写“消息” -&gt; “提交”。提交后，在VSCode的“源代码管理图”中，就可以看到刚才的提交记录。</li>
+<li>此时，若修改文件夹内的代码，会在“源代码管理” -&gt; “更改”中看到刚才被修改的文件。再次提交代码后，可以在“源代码管理图”中看到两次提交的关系及修改的内容。</li>
+<li>当“更改”为空时（一般对应代码已经被提交），“提交”按钮变为“发布Branch”。点击后，程序打开默认浏览器，并尝试登录Github账号。登录后，在VSCode中可以选择仓库为<code>public</code>或<code>private</code>，仓库名为文件夹名。</li>
+<li>成功创建云端仓库后，在“源代码管理图”中可看到云端对应存储的代码版本。“源代码管理图”以“main”显示本地代码版本，以“origin/main”显示云端代码版本。之后就是本地修改代码 -&gt; “更改” -&gt; “发布Branch”不断循环。</li>
+</ol>
+<h3 id="2-2-2-先创建云端仓库后上传本地文件">2.2.2 先创建云端仓库后上传本地文件</h3>
+<p>在上传时，在“源代码管理”中点击右上角的三个点 -&gt; “远程” -&gt; “添加远程存储库”，就可以选择云端库并给云端库在本地命名（本地备注）。</p>
+</div></article><aside class="post-widget"><h4>目录</h4><nav class="post-toc-wrap" id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-Git%E7%9A%84%E5%AE%89%E8%A3%85%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="post-toc-text">1. Git的安装及配置</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-Git%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="post-toc-text">2. Git的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93%EF%BC%88Initialize-Repository%EF%BC%89"><span class="post-toc-text">2.1 初始化仓库（Initialize Repository）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-%E6%8F%90%E4%BA%A4"><span class="post-toc-text">2.2 提交</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-1-%E5%85%88%E4%B8%8A%E4%BC%A0%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%90%8E%E5%88%9B%E5%BB%BA%E4%BA%91%E7%AB%AF%E4%BB%93%E5%BA%93"><span class="post-toc-text">2.2.1 先上传本地文件后创建云端仓库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-2-%E5%85%88%E5%88%9B%E5%BB%BA%E4%BA%91%E7%AB%AF%E4%BB%93%E5%BA%93%E5%90%8E%E4%B8%8A%E4%BC%A0%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6"><span class="post-toc-text">2.2.2 先创建云端仓库后上传本地文件</span></a></li></ol></li></ol></li></ol></nav></aside></div><footer class="footer-nav"><div class="footer"><div class="back-top" id="back-top" title="Back to top"><i class="icon icon-chevron-bar-up"></i></div><div class="footer-content"><div><span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv">?</span>
 PV
 </span><span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv">?</span>
 UV</span></div>
