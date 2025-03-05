@@ -1,0 +1,100 @@
+<html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="description" content=""/><meta name="keyword"/><title>同济大学大模型API使用指南
+-
+Sheep Sparks
+</title><link rel="icon" href="img/favicon.ico"/>
+<link rel="stylesheet" href="/css/style.css">
+
+<link rel="stylesheet" href="/css/helpers.css">
+
+<script src="/js/clipboard/clipboard.min.js"></script>
+
+
+<script src="/js/bootstrap.js"></script>
+
+<script async="async" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"/><meta name="generator" content="Hexo 7.3.0"></head><body><div class="loading-wrapper" data-loading="data-loading"><div class="loading"><span></span><span></span><span></span></div></div><div class="page" data-filter="data-filter"><div class="head" data-show="data-show"><header class="head-header"><div class="head-author"><a class="head-author-link" href="/">Sheep Sparks</a></div><div class="head-right"><button class="bar-wrap" id="bar-wrap-toggle" title="菜单按钮"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button><div class="head-item"><a class="search-button head-item-link"><span>搜索</span>
+<i class="icon icon-search"></i></a></div><div class="head-item"><a class="head-item-link" href="/about">关于</a></div></div></header>
+<div class="menubar-head" id="menubar"><ul class="menubar-ul"><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/%E6%B5%81%E4%BD%93%E5%8A%9B%E5%AD%A6/">流体力学</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/">软件开发</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a></li><li class="menubar-item"><i class="icon icon-chevron-right"></i>
+<a class="menubar-link" href="/categories/Hexo%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/">Hexo框架学习</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><i class="icon icon-archive"></i>
+<a class="menubar-link" href="/archives">博文归档</a></li><li class="menubar-item"><i class="icon icon-tags"></i>
+<a class="menubar-link" href="/tags">标签</a></li><li class="menubar-item" data-border="data-border"></li><li class="menubar-item"><a class="menubar-link" href="/about"><span>关于</span></a></li></ul><div class="menu-search-box search-button"><div>搜索</div>
+<i class="icon icon-search"></i></div></div></div><div class="main" data-page="post"><article class="post" id="post"><header class="post-head"><h1 class="post-title"><a class="title" href="/2025/03/05/%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">同济大学大模型API使用指南</a></h1></header><div class="post-meta"><div class="post-date"><time class="post-time" itemprop="datePublished" title="2025-03-05 09:34:00" datetime="2025-03-05T01:34:00.000Z">2025-03-05</time></div>|
+<div class="post-tag"><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag">代码</a></li></ul></div>
+<div class="post-visit"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span>访问</span></div></div><div class="post-info"><div class="post-word-count">本文共938字。</div>
+</div><div class="article-entry" itemprop="articleBody"><p>基于学校提供的大模型API，用户可以较为方便地将DeepSeek-R1-671B等大模型集成到自己的项目或应用中。</p>
+<span id="more"></span>
+<h1 id="1-同济大学大模型API服务简介">1. 同济大学大模型API服务简介</h1>
+<p>同济大学为全校教师和博士后提供了大语言模型API的调用服务，目前每人可申请500W Token额度。需要注意的是，目前平台提供的API服务仅限校园网内（校园网外需通过VPN）访问。</p>
+<p>教师可通过<a target="_blank" rel="noopener" href="https://system.tongji.edu.cn/adminportal/">统一身份认证登录系统</a>登录学校的登录信息建设与管理平台，并填写相应表单申请API-KEY，之后请等待信息办相关老师审核。审核通过后API-KEY会被发送至教师邮箱。</p>
+<p>学校目前提供了三种模型的调用：</p>
+<ul>
+<li>
+<p>DeepSeek-R1（671B）</p>
+</li>
+<li>
+<p>DeepSeek-R1-Distill-Llama-70B</p>
+</li>
+<li>
+<p>DeepSeek-R1-Distill-Qwen-32B</p>
+</li>
+</ul>
+<p>目前课题组已经申请了DeepSeek-R1（671B）的API-KEY，请课题组同学联系组内相关老师获取。学校提供的API-KEY对上下文长度做了部分限制：最大单次输入长度不超过4096，最大输出长度不超过8K，最大上下文长度不超过32K。</p>
+<p>计算资源珍贵，各位同学注意不要泄漏大模型API-KEY信息，他人拿到API-KEY会消耗掉账号内的资源。禁止售卖、恶意泄漏校内API-KEY计算资源。如果涉及大量Token消耗，请提前联系课题组内相关老师。</p>
+<h1 id="2-API调用示例">2. API调用示例</h1>
+<p>API-KEY可提供比网页端更高效、稳定的模型服务，并可集成到自编软件中。以下演示如何分别在Cherry studio和Python中调用学校的API-KEY。</p>
+<h2 id="2-1-基于Cherry-Studio的模型调用">2.1 基于Cherry Studio的模型调用</h2>
+<p>Cherry Studio是一个支持多服务商集成的AI对话客户端，其可以集成API-KEY并实现模型调用、构建个人知识库等。</p>
+<p>首先，下载<a target="_blank" rel="noopener" href="https://cherry-ai.com/">Cherry Studio</a>并安装。打开软件，在设置界面里添加模型提供商。提供商名称可任意填写（如：<code>同济</code>），提供商类型为<code>OpenAI</code>。在右方输入学校提供的API-KEY密钥，API地址为<code>https://llmapi.tongji.edu.cn/v1/</code>，点击添加-&gt;输入<code>DeepSeek-R1</code>。确保自己已经连接到校园内网，点击API密钥旁边的“检查”，应可以看到软件正确识别的绿色对勾符号。</p>
+<p><img src="https://img.picui.cn/free/2025/03/05/67c7aefcad698.png" alt=""></p>
+<p><img src="https://img.picui.cn/free/2025/03/05/67c7aefcbbf82.png" alt=""></p>
+<p><img src="https://img.picui.cn/free/2025/03/05/67c7b0893e4f8.png" alt=""></p>
+<p>回到对话界面，将对话框左上角模型切换到刚刚设置的同济模型，就可以在对话框中直接和模型对话。</p>
+<p><img src="https://img.picui.cn/free/2025/03/05/67c7aefcaf92c.png" alt=""></p>
+<p>Cherry Studio还支持其他API提供商的API-KEY、支持<a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/advanced-basic/lian-wang-mo-xing">模型联网</a>、<a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/knowledge-base/knowledge-base">构建个人知识库</a>等服务，请有兴趣的同学点击链接移步至官方软件手册。目前同济API服务商本身不支持联网，通过配置<a target="_blank" rel="noopener" href="https://tavily.com/">Tavily</a> 服务后，即可实现基于学校API的联网对话功能。</p>
+<p><img src="https://img.picui.cn/free/2025/03/05/67c7b16d7e655.png" alt=""></p>
+<h2 id="2-2-基于Python的模型调用">2.2 基于Python的模型调用</h2>
+<p>一种更灵活的方法是直接用Python调用API，学校的<a target="_blank" rel="noopener" href="https://dev.tongji.edu.cn/agent-document/#/api">API手册</a>上提供了调用的示例代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> openai <span class="hljs-keyword">import</span> OpenAI<br><br>client = OpenAI(<br>    api_key = <span class="hljs-string">&quot;your_api_key&quot;</span>,   <span class="hljs-comment"># 替换为课题组的API密钥</span><br>    base_url = <span class="hljs-string">&quot;https://llmapi.tongji.edu.cn/v1&quot;</span><br>)<br><br>chat_completion = client.chat.completions.create(<br>    model=<span class="hljs-string">&quot;DeepSeek-R1&quot;</span>,<br>    messages=[<br>        &#123;<br>            <span class="hljs-string">&quot;role&quot;</span>: <span class="hljs-string">&quot;user&quot;</span>,<br>            <span class="hljs-string">&quot;content&quot;</span>: <span class="hljs-string">&quot;0110110110110中有几个1?&quot;</span>,<br>        &#125;<br>    ],<br>    stream=<span class="hljs-literal">True</span><br>)<br><br><span class="hljs-comment"># 流式输出结果</span><br><span class="hljs-keyword">for</span> chunk <span class="hljs-keyword">in</span> chat_completion:<br>    <span class="hljs-keyword">if</span> chunk.choices[<span class="hljs-number">0</span>].delta.content <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:<br>        <span class="hljs-built_in">print</span>(chunk.choices[<span class="hljs-number">0</span>].delta.content, end=<span class="hljs-string">&quot;&quot;</span>, flush=<span class="hljs-literal">True</span>)<br></code></pre></td></tr></table></figure>
+<p>未安装openai库的同学可用<code>pip install openai</code>安装。</p>
+<p>需要将上述代码中的<code>&quot;your_api_key&quot;</code>替换为课题组的API密钥。在确保自己连接了校园网的情况下，直接运行上述代码，即可在终端看到模型输出。</p>
+<p><img src="https://dev.tongji.edu.cn/agent-document/api/stream.gif" alt=""></p>
+</div></article><aside class="post-widget"><h4>目录</h4><nav class="post-toc-wrap" id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-%E5%90%8C%E6%B5%8E%E5%A4%A7%E5%AD%A6%E5%A4%A7%E6%A8%A1%E5%9E%8BAPI%E6%9C%8D%E5%8A%A1%E7%AE%80%E4%BB%8B"><span class="post-toc-text">1. 同济大学大模型API服务简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-API%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="post-toc-text">2. API调用示例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-%E5%9F%BA%E4%BA%8ECherry-Studio%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8"><span class="post-toc-text">2.1 基于Cherry Studio的模型调用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-%E5%9F%BA%E4%BA%8EPython%E7%9A%84%E6%A8%A1%E5%9E%8B%E8%B0%83%E7%94%A8"><span class="post-toc-text">2.2 基于Python的模型调用</span></a></li></ol></li></ol></nav></aside></div><footer class="footer-nav"><div class="footer"><div class="back-top" id="back-top" title="Back to top"><i class="icon icon-chevron-bar-up"></i></div><div class="footer-content"><div><span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv">?</span>
+PV
+</span><span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv">?</span>
+UV</span></div>
+
+Copyright &copy;
+2025
+.
+
+Power by
+<a href="https://hexo.io/" target="_blank" rel="external nofollow">Hexo</a>
+and
+<a href="https://github.com/Cerallin/hexo-theme-yuzu" target="_blank" rel="external nofollow" title="v3.2.5">Theme Yuzu</a>.</div></div></footer>
+<script>window.config = {
+  url_root: '/',
+  meta_path: 'meta.json',
+};
+</script>
+<script src="/js/theme/back-to-top.js"></script>
+
+
+<script src="/js/theme/clipboard.js"></script>
+
+
+<script src="/js/theme/loading.js"></script>
+
+
+<script src="/js/theme/navbar.js"></script>
+
+<script src="/js/theme/search.js"></script>
+
+<script src="/js/theme/toc.js"></script>
+<script>window.onload = function () {
+  for (const moduleName in Theme) {
+    const module = Theme[moduleName];
+    module.register();
+  }
+};</script></div><div class="search-modal" id="search-modal"><div class="card"><div class="card-head"><div class="search-box"><input class="search-input" id="search-input" placeholder="搜索"/><div class="search-button" id="search-button"><div class="icon icon-search"></div></div></div><div class="close-button"><div class="icon icon-x"></div></div></div><div class="card-body"><div class="search-count">共<span id="search-count-num">0</span>条搜索结果。</div><div class="search-result" id="search-result"></div></div></div></div></body></html>
